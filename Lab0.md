@@ -1,0 +1,10 @@
+# Một số biểu đồ cơ bản
+
+## 1. Class Diagram
+![Diagram](https://www.planttext.com/api/plantuml/png/R8yn2i9044NxESKlas8l81OfBIm20Vl17PB5x8pihadZpImyabSGaS0ALX_UWmV_zNXskN0gjpWJvKjG9Cj2D0ITJa4K-xlpjgf3BocR4dqNEpWC9GKTeHobna4BUAmGi5ZmYBP8qrRjgX5vet_rRDU3dVk9VpGsVHHEshGWwaJzvyiR003__mC0)
+
+## 2. Usecase Diagram
+![Diagram](https://www.planttext.com/api/plantuml/png/UhzxlqDnIM9HIMbk3XTNSNPcda9HVd4g5vThRa5EVcLgge9kQO5kZPr2Q75g4PTpJcPgNWcAK71fGMfHMMPnVX6AC4Axhfs2Xaz-UcQU9efQ966egNfwS245AmK_VqKWmD3YN9IQM9AgeA_WafgJ2cI0BDEqKl1KICnLICzFuU9oICrB0Ve50000__y30000)
+
+## 3. Package Diagram
+![Diagram](https://www.planttext.com/api/plantuml/png/F90n3i8m34NtVmehEnTWG4X5GWnC1NLsMwj4bAJ4wT2pCN0aha1AMYRh_oVxIVwytdkD7EBuw06zMqV1gm3Hnbx8d4MLEr7QK2dFKLmZTB3S1NuOW9le0rrL0ce_kfR3HAQIcexNao7MUQBnBWRVaoblVXYiwwX8lXyk2uXBfeagstOIqNBacbMMhC1yd3Qx-H9jwU9f5M5k4YYBt2yQf9pQl9z9Lc2f_b0pNPN0NboRtl05003__mC0)
