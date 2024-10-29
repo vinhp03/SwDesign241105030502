@@ -56,12 +56,42 @@ Invalid Format or Insufficient Information
 # 4. Phân tích Create Employee Report
 Basic flow
 
-![Diagram](https://www.planttext.com/api/plantuml/png/T9D1JiCm44NtFiKeAv3e1P101HM9JL7LLc8zTQQjgMC7UnAKix7WI5m1sqbAqwQRA8hVd_d_M_dz_fbwHiTLeOK_A0FEUX8esJfuAKfj6o9H1a19LQ9Xo5QDPoeoG0_XTNYsSFQ39CCS3UweeF1jXemRz9G4Y_diMOX-BamUumYuXoLzLkGPs89qX4o0uAYqZaK40dVK_CCj40IAoIc4csNxOTsKT1VtahyTsHKyrYgdSxaGg1bEHi03P6lBgE7LLix3ktK7oc4RYa7eWcO2e3COeoLpx1JL15e5YtOBSezkHs2gOaFE1pw1awETfngLnescI_8o-apvKcDpXWAQFCHfM_6aWp5bJHXm6NwLJeTwGION8psV5VMbU0--9AcsAlGmx6s5DVKMA1zTVNB7FjAyxqUFHktnn6ehCMPAIGqMDBgXDtnLqctfgcWjfspHqp5PhnIaFS5RP_Sqt61Ek1E9Bk-pf3AduHd_g3y0003__mC0)
+![diagram](https://www.planttext.com/api/plantuml/png/Z91D3e8m48NtdA9BIF02BDm0YMxK18th0eCsKehJbgHdS-6Hl8Ajf8aXNR2Sd-_DU_DvlKi-zi80aCsMd1c7Xc9R0KwiWOmWF3L8THbRgi1Fuy8MATa9ZV8gy05jIl8xnHiSDAy1asYXuwHFrA3eUulIcigVj4864_ZxRXBxObyaqO88-lk7GrTTAxUjZ3G8rlKHvoZbeD2io-7mO0199_0BizuwpuqOEeQyidWSV9KFbP51ADQPsNAbgDBI4by0003__mC0)
 
-Alternative Flows
+- Employee: Lớp này chịu trách nhiệm cung cấp thông tin của nhân viên và xác thực quyền truy cập khi yêu cầu cập nhật bảng chấm công.
+- TimeCard: Đại diện cho từng bản ghi chấm công của nhân viên. Mỗi bản ghi chứa thông tin về số giờ làm, ngày làm việc, và mã công việc.
+- PayrollDatabase: Chịu trách nhiệm lưu trữ thông tin của nhân viên và các bảng chấm công, đảm bảo rằng tất cả bản ghi chấm công được cập nhật và lưu trữ đúng cách.
+- TimecardService: Chịu trách nhiệm quản lý yêu cầu cập nhật bảng chấm công của nhân viên, xử lý việc tạo mới hoặc cập nhật các bản ghi chấm công, và xác nhận trạng thái cập nhật tới nhân viên.
 
-![Diagram](https://www.planttext.com/api/plantuml/png/R951JWCn34NtFeNL5KXm0HQeeYthgd01ap4GaKc2xIcQix7WI5m1PuO2ebqaIkptlntdy_rZgKPYGvz0Ns96ASf0mOhWfg-fZCnG7OWXLig6YxjHZVi5ag8V0GuKNbwt05xXZby7LaCh68J960c5Qn631ZZte_c5Py05qLWYuTbk3joFbIzmxIvwVgBMLie-TlnV3a393jxSOSoFHNgoM38EcVOK4pqa1iJZZjPHQw8HMSI7qBCgFJNokFZgkVYqsZk5focY2mBbm0bSCBSm9VnsgjHt5cz8Oy3RLDuSvEIUgya5IsMPklvhC1VVv0u79mDfwuvp1st1qlVscry0003__mC0)
+# 5.Hợp nhất kết quả phân tích
+- Tổng quan hệ thống
+    + Hệ thống Payroll của Acme được thiết kế nhằm đáp ứng yêu cầu về quản lý và xử lý thanh toán lương cho nhân viên, cũng như việc ghi      nhận và quản lý thông tin chấm công. Hệ thống hỗ trợ ba loại nhân viên (nhân viên theo giờ, nhân viên hưởng lương cố định, và nhân        viên có hoa hồng), cho phép họ nhập thông tin chấm công và yêu cầu thanh toán thông qua giao diện máy tính để bàn.
+- Mối quan hệ giữa các lớp
+    + Employee: Liên kết với TimeCard và PurchaseOrder, đại diện cho thông tin nhân viên.
+    + TimeCard: Lưu trữ thông tin chấm công và liên kết với TimecardService.
+    + PurchaseOrder: Lưu trữ thông tin giao dịch bán hàng và liên kết với PaymentService.
+    + PayrollDatabase: Là cơ sở dữ liệu trung tâm, chứa thông tin toàn diện về nhân viên, bảng chấm công, và đơn mua hàng.
+    + PaymentService: Xử lý các yêu cầu thanh toán và tính toán lương, liên kết với PayrollDatabase.
+    + TimecardService: Quản lý các hoạt động liên quan đến bảng chấm công, liên kết với PayrollDatabase.
+- Biểu đồ hợp nhất 2 ca sử dụng
+  
+![diagram](https://www.planttext.com/api/plantuml/png/X5HBRi8m4Dtd52DM89KBP561e5AxeKXGTUtOKneHn-dOHeggdgoB7gbNw8HFi4aeNcGnVlFUcu_p-_qpiKwGyxf8AY6tOeCmM8gQJ570ghOEzG0-4-0Z2s4jFEYgC3NYCTYSCJpDKrWvoijD45m8ZJtXgLA4rlRSiAp6qgthAixxIWBzTQvn9aX5-dFXEANv1i57uyc-6jgYuZlZioAydRqBsk32wmpfkjhIatmN5fz98TsMd6hZInUfnNI7ndAMo9Wr80ImOeUduePEfcsbenHs9bS1b93juWuRdY7gwjn-nfu6rAlUz7U5jCjbB2v58Nt1nHmn3UkPQjJf7q15Hl8Oh-5RnvtXIIwfpmBXXqVhNYh5DcA-E_Y_7wLn-LlTbzdZf5tWyVZ-l4qfwqj3odOnyGwaO7scStS0jladih2w5BGe-K4foEezEcRQSySZIKzj3N8kLkR2jNM6NzDLP5l8JMIdoWWUcZpwZXZITYSjy1H4svom7_s9VZysc_1u9bYgvaVq1m00__y30000)
 
-Requested Information Unavailable
-
-![Diagram](https://www.planttext.com/api/plantuml/png/T99DJWCn34RtESMdha222x105QL8tQ6M2rWP5rdaZyHJD6TZmP6u0Xw65gaCYqHHyZxxHSdd-yUoALNjOt3jHH9gRkp8QwvOnnBomEoA0UAbK58iTaDJZWjGWosTErAulXqtS8Cjl_RS59hXAvCo29LBhkf6mBXJvXUU00k8SXN2nNRQU1eAN-7UghJBcLwFDH-aOqZosGxPcfcvf0C5wSwBEaT1iVav_EPQlz_RrTXk9ccVQoILd1pmrzHQnQ8m255Qa_Hy5ldVRewtm6YpcnL0cPATKNCkgvnKKi-ueoOU3o6_6ScXCLQKF0VamlKeTgemMQrJXzv8J_RKbagT6uTRsZp-Woy0003__mC0)
+- Chức năng
+    + Employee: Lưu trữ thông tin của nhân viên, bao gồm ID, tên, địa chỉ, và phương thức thanh toán.
+    + TimeCard: Ghi nhận và lưu trữ thông tin về số giờ làm việc của nhân viên theo từng ngày và mã công việc.
+    + PurchaseOrder: Ghi nhận các giao dịch bán hàng của nhân viên hưởng hoa hồng, bao gồm ngày bán và số tiền bán.
+    + PayrollDatabase: Lưu trữ thông tin toàn diện và cho phép truy xuất và cập nhật dữ liệu cho các lớp khác.
+    + PaymentService: Tính toán và thực hiện thanh toán cho nhân viên dựa trên thông tin từ PayrollDatabase.
+    + TimecardService: Quản lý các yêu cầu cập nhật bảng chấm công từ nhân viên và lưu trữ thông tin vào PayrollDatabase.
+      
+- Lợi ích của việc hợp nhất
+    + Tính nhất quán: Hợp nhất các lớp liên quan giúp tạo ra một cấu trúc hệ thống nhất quán và dễ hiểu, giảm thiểu sự trùng lặp và giúp      tăng cường khả năng bảo trì.
+    + Dễ dàng mở rộng: Cấu trúc này cho phép việc mở rộng hệ thống dễ dàng hơn, với khả năng tích hợp các chức năng mới trong tương lai 
+    mà không làm gián đoạn các chức năng hiện tại.
+    + Tăng cường bảo mật: Mỗi lớp có nhiệm vụ rõ ràng, giúp dễ dàng hơn trong việc kiểm soát quyền truy cập và bảo vệ dữ liệu của nhân 
+    viên.
+    + Quản lý hiệu quả: Hợp nhất các lớp liên quan giúp tối ưu hóa việc quản lý thông tin, từ đó nâng cao hiệu quả hoạt động của hệ thống.
+- Kết luận
+    + Việc hợp nhất kết quả phân tích cho hai ca sử dụng "Select Payment" và "Maintain Timecard" đã cung cấp cái nhìn toàn diện về hệ         thống quản lý bảng lương của Acme, Inc. Qua quá trình phân tích, chúng ta đã xác định rõ ràng các lớp phân tích, mối quan hệ giữa 
+    chúng, cũng như chức năng và nhiệm vụ của từng lớp.
